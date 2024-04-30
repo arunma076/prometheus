@@ -1,0 +1,6 @@
+tls_server_config:
+  cert_file: node-expo.beinex.pem
+  key_file: privatekey.key
+
+basic_auth_users:
+  prometheus: $2y$12$vvVAXIRZEotMB4SgaT/jYuHq/7OsbKdyOXeDuzv.EPxK/v5OitLWG
