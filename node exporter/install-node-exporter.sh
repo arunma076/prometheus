@@ -1,4 +1,4 @@
-!#/bin/bash
+#!/bin/bash
 
 sudo useradd --no-create-home node_exporter
 
