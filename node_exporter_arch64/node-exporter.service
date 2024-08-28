@@ -1,0 +1,12 @@
+[Unit]
+Description=Prometheus Node Exporter Service
+After=network.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter --web.config.file="/etc/node_exporter/config.yml"
+
+[Install]
+WantedBy=multi-user.target
