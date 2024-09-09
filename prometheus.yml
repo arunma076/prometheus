@@ -3,8 +3,30 @@ global:
   evaluation_interval: 15s
 
 scrape_configs:
-  - job_name: 'galadhari-client-server'
-    static_configs:
-      - targets: ['20.216.4.110:9100']
-        labels:
-           hostname: 'app-auraa'
+  - job_name: 'aurex_linux_servers'
+    ec2_sd_configs:
+      - region: 'ap-south-1' 
+        #access_key:   
+        #secret_key:  
+        port: 9100     
+    relabel_configs:
+      - source_labels: [__meta_ec2_tag_os] 
+        regex: linux
+        action: keep
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance_name
+
+  - job_name: 'aurex_win_servers'
+    ec2_sd_configs:
+      - region: 'ap-south-1' 
+        #access_key: 
+        #secret_key: 
+        port: 9182  
+    relabel_configs:
+      - source_labels: [__meta_ec2_tag_os]
+        regex: windows
+        action: keep
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance_name
+
+  

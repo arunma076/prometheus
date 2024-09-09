@@ -1,0 +1,56 @@
+groups:
+- name: EC2InstanceStatusChecks
+  rules:
+  - alert: india-office-hours
+    expr: up{job=~"linux|windows", tag="india-office-hours", instance_state="running"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "EC2 Instance {{ $labels.instance_name }} is down"
+      description: "Instance {{ $labels.instance_name }}  is down for more than 30 seconds."
+  
+  - alert: 10-office-hours
+    expr: up{job=~"linux|windows", tag="10-office-hours", instance_state="running"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "EC2 Instance {{ $labels.instance_name }} is down"
+      description: "Instance {{ $labels.instance_name }}  is down for more than 30 seconds."
+  
+  - alert: 12-office-hours
+    expr: up{job=~"linux|windows", tag="12-office-hours", instance_state="running"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "EC2 Instance {{ $labels.instance_name }} is down"
+      description: "Instance {{ $labels.instance_name }}  is down for more than 30 seconds."
+
+  - alert: ext-office-hours
+    expr: up{job=~"linux|windows", tag="ext-office-hours", instance_state="running"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "EC2 Instance {{ $labels.instance_name }} is down"
+      description: "Instance {{ $labels.instance_name }}  is down for more than 30 seconds."
+
+  - alert: sat-office-hours
+    expr: up{job=~"linux|windows", tag="sat-office-hours", instance_state="running"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "EC2 Instance {{ $labels.instance_name }} is down"
+      description: "Instance {{ $labels.instance_name }}  is down for more than 30 seconds."      
+
+  - alert: production
+    expr: up{job=~"linux|windows",env="Production"} == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "EC2 Instance {{ $labels.instance_name }} is down"
+      description: "Instance {{ $labels.instance_name }}  is down for more than 30 seconds."  
